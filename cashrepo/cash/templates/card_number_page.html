@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Number</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Card Number</h1>
+    <form style="text-align: center;">
+        {% csrf_token %}
+        <input type="number" value="card number"/>
+        <input type="submit" value="send"/>
+    </form>
+</body>
+</html>
