@@ -1,12 +1,12 @@
 from django.shortcuts import render, render_to_response, HttpResponseRedirect, HttpResponse
 import datetime
-from cash.models import *
+from models import *
 
 def card_number_page(request):
     cards = Card.objects.all()
-    card = request.GET['card']
-    if card in cards:
-        return HttpResponseRedirect('/cash/pin/')
+    card = request.GET.get("card")
+    if card in Card.objects.filter(number=card):
+        return render(request, "pin.html")
     else:
         return render(request, "card_number_page.html")
 
