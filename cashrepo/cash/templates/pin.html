@@ -6,10 +6,12 @@
 </head>
 <body>
     <h1 style="text-align: center;">Pin Code</h1>
-    <form style="text-align: center;">
+    <form style="text-align: center;" action="/cash/">
         {% csrf_token %}
-        <input type="password" value="pin"/>
+        <input type="password" name="pin"/>
+        <input type="reset" value="clear"/>
         <input type="submit" value="send"/>
+        <input type="submit" value="exit"/>
     </form>
 </body>
 </html>

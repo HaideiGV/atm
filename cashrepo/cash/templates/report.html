@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Page</title>
+</head>
+<body>
+        <div>
+        <p>Card Number - {{ card }}</p>
+        <p>Payment amount - {{ take_amount }}</p>
+        <p>Balance - {{ amount }}</p>
+        <p>Date - {{ trans_time }}</p>
+        <form>
+            {% csrf_token %}
+            <button>Prev</button>
+            <button>Exit</button>
+        </form>
+    </div>
+
+</body>
+</html>

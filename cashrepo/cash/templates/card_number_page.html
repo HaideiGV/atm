@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Card Number</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="static/js/jquery.maskedinput.min.js"></script>
+
 </head>
 <body>
+    <script type="text/javascript">
+        jQuery(function($){
+            $("#phone").mask("9999-9999-9999-9999");
+        });
+    </script>
     <h1 style="text-align: center;">Card Number</h1>
-    <form style="text-align: center;">
+    <form style="text-align: center;" method="get" action=".">
         {% csrf_token %}
-        <input type="number" value="card number"/>
+        <input type="text" name="card" placeholder="type your card number"/>
+        <input type="reset" value="clear"/>
         <input type="submit" value="send"/>
     </form>
 </body>
