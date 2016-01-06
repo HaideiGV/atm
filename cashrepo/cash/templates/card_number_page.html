@@ -14,8 +14,14 @@
         <!--});-->
     <!--</script>-->
     <h1 style="text-align: center;">Card Number</h1>
+    <!--<form style="text-align: center;" method="get" action=".">-->
+        <!--<input type="text" name="card" placeholder="type your card number"/>-->
+        <!--<input type="reset" value="clear"/>-->
+        <!--<input type="submit" value="send"/>-->
+    <!--</form>-->
+
     <form style="text-align: center;" method="get" action=".">
-        <input type="text" name="card" placeholder="type your card number"/>
+        {{ form.as_p }}
         <input type="reset" value="clear"/>
         <input type="submit" value="send"/>
     </form>

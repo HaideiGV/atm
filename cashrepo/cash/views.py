@@ -1,19 +1,26 @@
-from django.shortcuts import render, render_to_response, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, render_to_response, HttpResponseRedirect, HttpResponse, redirect
 import datetime
 from models import *
+from forms import CardForm
+import unicodedata
 
 def card_number_page(request):
-    cards = Card.objects.all()
-    card = request.GET.get("card")
-    if card in Card.objects.filter(number=card):
-        return render(request, "pin.html")
+    form = CardForm(request.GET)
+    card = request.GET.get("number")
+    cards = Card.objects.filter(number=card, status=1)
+    if cards:
+
+        return HttpResponseRedirect('/cash/pin/')
     else:
-        return render(request, "card_number_page.html")
+        return render(request, "card_number_page.html", {'form':form})
+
+
 
 def pin_code_page(request):
-    btn = request.POST.get('button')
-    if btn == 'exit':
+    btn = request.POST.get('pin')
+    if request.POST.get('exit'):
         return HttpResponseRedirect('/cash/')
+
     return render(request, "pin.html")
 
 def operations_page(request):

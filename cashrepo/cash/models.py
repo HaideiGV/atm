@@ -1,12 +1,12 @@
 from django.db import models
 
 class Card(models.Model):
-    number = models.IntegerField(unique=True)
+    number = models.CharField(unique=True, max_length=16)
     status = models.BooleanField()
-    pin = models.IntegerField()
+    pin = models.CharField(max_length=4)
 
     def __repr__(self):
-        return str(self.number)
+        return self.number
 
 
 

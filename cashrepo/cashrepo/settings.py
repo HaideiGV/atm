@@ -85,3 +85,7 @@ STATIC_URL = '/static/'
 TEMPLATE_DIR = (
     os.path.join(os.path.dirname(__file__), 'templates'),
 )
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
+
