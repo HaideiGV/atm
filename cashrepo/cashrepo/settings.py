@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cash',
+    #'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,6 +82,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = '/static/'
 
 TEMPLATE_DIR = (
     os.path.join(os.path.dirname(__file__), 'templates'),

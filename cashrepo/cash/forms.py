@@ -7,6 +7,7 @@ class CardForm(forms.ModelForm):
         fields = ['number']
 
 class PinForm(forms.ModelForm):
+    pin = forms.CharField(label=('pin'), widget=forms.PasswordInput)
     class Meta:
         model = Card
         fields = ['pin']

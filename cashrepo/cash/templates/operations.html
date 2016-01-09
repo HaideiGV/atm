@@ -6,12 +6,12 @@
 </head>
 <body>
     <h1>Choose your operation</h1>
-    <form action="" method="get">
+    <form action="{{ url }}" method="post">
         {% csrf_token %}
         <div style="text-align: center;">
-            <button style="height: 50px; width: 150px;">Balance</button>
-            <button style="height: 50px; width: 150px;">Take a cash</button>
-            <button style="height: 50px; width: 150px;">Exit</button>
+            <button name="balance">Balance</button>
+            <button name="take_cash">Take a cash</button>
+            <button name="exit">Exit</button>
         </div>
     </form>
 
