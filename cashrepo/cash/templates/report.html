@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends "index.html" %}
+{% block title %}
     <title>Report Page</title>
-</head>
-<body>
+{% endblock title %}
+
+{% block content %}
         <div>
         <p>Card Number - {{ card }}</p>
-        <p>Payment amount - {{ take_amount }}</p>
+        <p>Withdraw sum - {{ withdraw_cash }}</p>
         <p>Balance - {{ amount }}</p>
         <p>Date - {{ trans_time }}</p>
         <form>
             {% csrf_token %}
-            <button>Prev</button>
-            <button>Exit</button>
+            <input type="button" onclick="location.href='/cash/operations/'" value="Prev"/>
+            <input type="button" onclick="location.href='/cash/'" value="Exit"/>
         </form>
     </div>
-
-</body>
-</html>
+{% endblock content %}

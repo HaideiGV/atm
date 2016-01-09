@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Operation Page</title>
-</head>
-<body>
-    <h1>Choose your operation</h1>
-    <form action="{{ url }}" method="post">
-        {% csrf_token %}
-        <div style="text-align: center;">
-            <button name="balance">Balance</button>
-            <button name="take_cash">Take a cash</button>
-            <button name="exit">Exit</button>
-        </div>
-    </form>
+{% extends "index.html" %}
+{% block title %}
+    <title>Operations</title>
+{% endblock title %}
 
-</body>
-</html>
+{% block content %}
+    <h1>Choose your operation</h1>
+    <form action="." method="get">
+        <!--<button onclick="window.open('/cash/balance/')" name="balance">Balance</button>-->
+        <!--<button onclick="window.open('/cash/take_cash/')" name="take_cash">Take Cash</button>-->
+        <!--<button onclick="window.open('/cash/')" name="exit">Exit</button>-->
+        <input onclick="location.href='/cash/balance/'" type="button" name="balance" value="Balance"/>
+        <input onclick="location.href='/cash/take_cash'" type="button" name="take_cash" value="Take Cash"/>
+        <input onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
+    </form>
+{% endblock content %}

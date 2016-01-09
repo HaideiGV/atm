@@ -11,3 +11,6 @@ class PinForm(forms.ModelForm):
     class Meta:
         model = Card
         fields = ['pin']
+#
+# class RedirectForm(forms.BaseForm):
+#     balance = forms.

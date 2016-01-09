@@ -12,11 +12,23 @@ class Card(models.Model):
 
 
 class Transactions(models.Model):
-    card_number = models.ForeignKey(Card)
-    date = models.DateTimeField()
-    balance = models.BooleanField()
-    paymant = models.FloatField()
-    transaction_status = models.IntegerField()
+    """
+    100 - successfully withdraw cash
+    101 - successfully show balance
+
+
+    200 - error withdraw cash
+    201 - wrong pin
+    202 - not enough amount
+    """
+    card_number = models.CharField(max_length=16)
+    input_pin = models.CharField(max_length=4, null=True)
+    try_pin = models.IntegerField()
+    transaction_time = models.DateTimeField()
+    show_balance = models.BooleanField()
+    sum_withdrawal = models.FloatField()
+    transaction_status = models.BooleanField()
+    transaction_code = models.IntegerField()
 
     def __unicode__(self):
         return str(self.card_number)+str(self.date)+str(self.transaction_status)+str(self.paymant)

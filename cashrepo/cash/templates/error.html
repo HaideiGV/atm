@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Error Page</title>
-</head>
-<body>
-    <h1 style="color: red;">Transaction is incorrect! Please try later</h1>
-    <form action="." method="get">
-        <button name="prev">Prev</button>
-    </form>
+{% extends "index.html" %}
+    {% block title %}
+    <title>Error</title>
+    {% endblock title %}
 
-</body>
-</html>
+{% block content %}
+    <div style="text-align: center;">
+        <h1 style="color: yellow;">{{error}}</h1>
+        <form action="." method="get">
+            <input type="button" onclick="location.href='/cash/'" value="Prev"/>
+        </form>
+    </div>
+
+{% endblock content %}

@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends "index.html" %}
+    {% block title %}
     <title>Card Number</title>
+    {% endblock title %}
     <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
     <!--<script src="static/js/jquery.maskedinput.min.js"></script>-->
 
-</head>
-<body>
+
+{% block content %}
     <!--<script type="text/javascript">-->
         <!--jQuery(function($){-->
             <!--$("#phone").mask("9999-9999-9999-9999");-->
@@ -22,8 +21,8 @@
 
     <form style="text-align: center;" method="get" action=".">
         {{ form.as_p }}
-        <input type="reset" value="clear"/>
-        <input type="submit" value="send"/>
+        <input type="reset" value="Clear"/>
+        <input type="submit" value="Ok"/>
     </form>
-</body>
-</html>
+
+{% endblock content%}
