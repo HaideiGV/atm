@@ -131,21 +131,13 @@ def balance_page(request):
 def withdraw_cash_page(request):
     start_amount = Card.objects.values('amount').filter(number=request.session['number'])[0]['amount']
     amount = request.GET.get('amount')
-    print(amount)
     if amount != None:
         if float(amount) <= float(start_amount):
             c = Card.objects.get(number=request.session['number'])
             c.amount = float(start_amount) - float(amount)
             c.save()
-            val = Card.objects.values('amount').filter(number=request.session['number'])[0]['amount']
-
-            # ctx = {
-            #     'card': request.session['number'],
-            #     'trans_time': datetime.datetime.now(),
-            #     'withdraw_cash': amount,
-            #     'amount': val
-            # }
-
+            request.session['trans_time'] = str(datetime.datetime.now())
+            request.session['withdraw_cash'] = amount
             return HttpResponseRedirect('/cash/report/')
         else:
             error = 'Not enough money on your account!'
@@ -155,12 +147,11 @@ def withdraw_cash_page(request):
 
 
 def report_page(request):
-    trans_time = datetime.datetime.now()
     ctx = {
-        'card': 'card number',
-        'trans_time':trans_time,
-        'withdraw_cash':"100$",
-        'amount':'900$'
+        'card': request.session['number'],
+        'trans_time': request.session['trans_time'],
+        'withdraw_cash': request.session['withdraw_cash'],
+        'amount': Card.objects.values('amount').filter(number=request.session['number'])[0]['amount']
     }
     return render_to_response("report.html", ctx)
 
