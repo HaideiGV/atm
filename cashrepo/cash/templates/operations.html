@@ -6,11 +6,8 @@
 {% block content %}
     <h1>Choose your operation</h1>
     <form action="." method="get">
-        <!--<button onclick="window.open('/cash/balance/')" name="balance">Balance</button>-->
-        <!--<button onclick="window.open('/cash/take_cash/')" name="take_cash">Take Cash</button>-->
-        <!--<button onclick="window.open('/cash/')" name="exit">Exit</button>-->
         <input onclick="location.href='/cash/balance/'" type="button" name="balance" value="Balance"/>
-        <input onclick="location.href='/cash/take_cash'" type="button" name="take_cash" value="Take Cash"/>
+        <input onclick="location.href='/cash/withdraw_cash'" type="button" name="withdraw_cash" value="Withdraw Cash"/>
         <input onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
     </form>
 {% endblock content %}

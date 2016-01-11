@@ -3,7 +3,7 @@ from django.db import models
 class Card(models.Model):
     number = models.CharField(unique=True, max_length=16)
     status = models.BooleanField()
-    pin = models.CharField(max_length=4)
+    pin = models.CharField(max_length=4, null=False)
     amount = models.IntegerField(verbose_name='Cash amount')
 
     def __repr__(self):

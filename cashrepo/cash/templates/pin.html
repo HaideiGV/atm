@@ -8,8 +8,9 @@
     <h1 style="text-align: center;">Pin Code</h1>
     <form style="text-align: center;" action="." method="get">
         {% csrf_token %}
-        {{ form.as_p}}
-        <input type="reset" value="Clear"/>
+        <!--{{ form.as_p}}-->
+        <input type="text" id="defaultKeypad" name="pin" placeholder="****" maxlength="4">
+        <!--<input type="reset" value="Clear"/>-->
         <input type="submit" value="Ok"/>
         <input onclick="location.href='/cash/'" type="button" value="Exit"/>
     </form>

@@ -10,8 +10,8 @@
         <p>Date - {{ now }}</p>
         <form>
             {% csrf_token %}
-            <button>Prev</button>
-            <button>Exit</button>
+            <input onclick="location.href='/cash/operations/'" type="button" name="prev" value="Prev" />
+            <input onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
         </form>
     </div>
 {% endblock content %}
