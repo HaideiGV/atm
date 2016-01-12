@@ -20,9 +20,9 @@
     <script>
     $(function () {
 	    $('#defaultKeypad').keypad();
-	    $('#inlineKeypad').keypad({onClose: function() {
-		    alert($(this).val());
-	    }});
+    });
+    $("#defaultKeypad").keypress(function(){
+        $("#defaultKeypad").mask("(999) 999-9999");
     });
     </script>
 
