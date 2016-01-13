@@ -17,13 +17,14 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/static/js/jquery.plugin.js"></script>
     <script src="/static/js/jquery.keypad.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery.payfield.css">
+    <script src="/static/js/jquery.payfield.js"></script>
     <script>
     $(function () {
-	    $('#defaultKeypad').keypad();
+	    $('.credit-card-input').keypad();
     });
-    $("#defaultKeypad").keypress(function(){
-        $("#defaultKeypad").mask("(999) 999-9999");
-    });
+    $(".credit-card-input").payfield();
     </script>
 
 </head>

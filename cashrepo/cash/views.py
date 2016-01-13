@@ -2,6 +2,20 @@ from django.shortcuts import render, render_to_response, HttpResponseRedirect, H
 import datetime
 from models import *
 from forms import CardForm, PinForm
+from django import template
+
+
+register = template.Library()
+@register.filter(name='input_filter')
+def input_filter(value):
+    res = ''
+    for i in range(len(str(value))-1):
+        if i%3 == 0:
+           res = res + '-'
+        else:
+            res = res + str(value)[i]
+    return res
+
 
 codes = {
     'successfully_withdraw_cash': 100,
@@ -52,7 +66,7 @@ def pin_code_page(request):
         t.save()
         return HttpResponseRedirect('/cash/operations/')
     elif pin != Card.objects.filter(number=session_number).values('pin'):
-        if request.session["try_pin"] != 4 and pin != None:
+        if request.session["try_pin"] != 3 and pin != None:
             request.session["try_pin"] += 1
             t = Transactions(
                 card_number=Card.objects.filter(number=request.session['number']).values('id')[0]['id'],
@@ -91,14 +105,14 @@ def pin_code_page(request):
 
 
 def operations_page(request):
-    if request.GET.get('exit'):
-        return HttpResponseRedirect('/cash/')
-    elif request.GET.get('withdraw_cash'):
-        return HttpResponseRedirect('/cash/take_cash/')
-    elif request.GET.get('balance'):
-        return HttpResponseRedirect('/cash/balance/')
-    else:
-        return render(request, "operations.html")
+    # if request.GET.get('exit'):
+    #     return HttpResponseRedirect('/cash/')
+    # elif request.GET.get('withdraw_cash'):
+    #     return HttpResponseRedirect('/cash/take_cash/')
+    # elif request.GET.get('balance'):
+    #     return HttpResponseRedirect('/cash/balance/')
+    # else:
+    return render(request, "operations.html")
 
 
 
@@ -180,6 +194,6 @@ def report_page(request):
 def error_page(request):
     btn = request.GET.get("prev")
     print(btn)
-    if btn:
+    if btn == 'prev':
         return HttpResponseRedirect('/cash/operations/')
     return render(request, "error.html")
