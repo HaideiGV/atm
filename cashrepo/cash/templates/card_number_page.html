@@ -4,15 +4,16 @@
     <title>Card Number</title>
     {% endblock title %}
 
+    {% block script %}
+
+    {% endblock script%}
+
 {% block content %}
 
     <h1 style="text-align: center;">Card Number</h1>
-    <form id="card_form" style="text-align: center;" method="get" action=".">
-        <!--<div class="credit-card-input">-->
-            <!--{{ form.number}}-->
-        <!--</div>-->
-        <input class=".credit-card-input" type="text" id="id_number" name="number" placeholder="**** **** **** ****" maxlength="16">
-        <input type="submit" value="Ok"/>
+    <form style="text-align: center;" method="get" action=".">
+        {{ form.number}}
+        <input class="keypad-special keypad-close" type="submit" value="Ok"/>
     </form>
 
 {% endblock content%}

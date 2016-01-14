@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}{% endblock title %}
+    {% block script %}{% endblock script%}
     <style>
         body{
             background-image: url("/static/media/background.jpg");
@@ -11,23 +12,31 @@
         }
     </style>
     <link href="/static/css/jquery.keypad.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/jquery.payfield.css">
+    <link rel="stylesheet" href="/static/css/jqx.base.css" type="text/css" />
     <style>
         #inlineKeypad { width: 10em; }
     </style>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jqxcore.js"></script>
+    <script type="text/javascript" src="/static/js/jqxmaskedinput.js"></script>
+
     <script src="/static/js/jquery.plugin.js"></script>
     <script src="/static/js/jquery.keypad.js"></script>
-    <script src="/static/js/jquery.min.js"></script>
-    <link rel="stylesheet" href="/static/css/jquery.payfield.css">
-    <script src="/static/js/jquery.payfield.js"></script>
+
     <script>
     $(function () {
-	    $('.credit-card-input').keypad();
-    });
-    $(".credit-card-input").payfield();
+	    $('#defaultKeypad').keypad();
+	});
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+            $(".card_mask").jqxMaskedInput({mask: '####-####-####-####' });
+        });
+    </script>
 </head>
+
 <body>
 
 {% block content %}{% endblock content %}

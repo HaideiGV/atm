@@ -41,6 +41,10 @@ def card_number_page(request):
         href = '/cash/'
         error = 'Your card is blocked! Please, call the bank!'
         return render(request, 'error.html', {'error':error, 'href': href})
+    elif not cards and card != None:
+        href = '/cash/'
+        error = 'Such card number does not exist!'
+        return render(request, 'error.html', {'error':error, 'href': href})
     else:
         return render(request, "card_number_page.html", {'form':form})
 
@@ -49,13 +53,14 @@ def pin_code_page(request):
     form = PinForm(request.GET)
     pin = request.GET.get('pin')
     session_number = request.session['number']
+    request.session['pin'] = pin
     if request.POST.get('exit'):
         return HttpResponseRedirect('/cash/')
     elif Card.objects.filter(number=session_number, pin=pin) and pin != None:
         request.session["try_pin"] = 0
         t = Transactions(
             card_number=Card.objects.filter(number=request.session['number']).values('id')[0]['id'],
-            input_pin=request.GET.get('pin'),
+            input_pin=request.session['pin'],
             try_pin=request.session['try_pin'],
             transaction_time=str(datetime.datetime.now()),
             show_balance=False,
@@ -70,7 +75,7 @@ def pin_code_page(request):
             request.session["try_pin"] += 1
             t = Transactions(
                 card_number=Card.objects.filter(number=request.session['number']).values('id')[0]['id'],
-                input_pin=pin,
+                input_pin=request.session['pin'],
                 try_pin=request.session['try_pin'],
                 transaction_time=str(datetime.datetime.now()),
                 show_balance=False,
@@ -88,7 +93,7 @@ def pin_code_page(request):
             c.save()
             t = Transactions(
                 card_number=Card.objects.filter(number=request.session['number']).values('id')[0]['id'],
-                input_pin=pin,
+                input_pin=request.session['pin'],
                 try_pin=request.session['try_pin'],
                 transaction_time=datetime.datetime.now(),
                 show_balance=False,
@@ -121,7 +126,7 @@ def balance_page(request):
     amount = Card.objects.values('amount').filter(number=request.session['number'])[0]['amount']
     t = Transactions(
         card_number=Card.objects.filter(number=request.session['number']).values('id')[0]['id'],
-        input_pin=request.GET.get('pin'),
+        input_pin=request.session['pin'],
         try_pin=request.session['try_pin'],
         transaction_time=datetime.datetime.now(),
         show_balance=True,
@@ -151,7 +156,7 @@ def withdraw_cash_page(request):
             request.session['withdraw_cash'] = amount
             t = Transactions(
                 card_number=Card.objects.filter(number=request.session['number']).values('id')[0]['id'],
-                input_pin=Card.objects.filter(number=request.session['number']).values('pin')[0]['pin'],
+                input_pin=request.session['pin'],
                 try_pin=request.session['try_pin'],
                 transaction_time=str(request.session['trans_time']),
                 show_balance=False,
@@ -164,7 +169,7 @@ def withdraw_cash_page(request):
         else:
             t = Transactions(
                 card_number=Card.objects.filter(number=request.session['number']).values('id')[0]['id'],
-                input_pin=Card.objects.filter(number=request.session['number']).values('pin')[0]['pin'],
+                input_pin=request.session['pin'],
                 try_pin=request.session['try_pin'],
                 transaction_time=str(request.session['trans_time']),
                 show_balance=False,

@@ -66,8 +66,8 @@ img.keypad-trigger {
 .keypad-key, .keypad-special {
 	margin: 0.125em;
 	padding: 0em;
-	width: 5em;
-	height: 5em;
+	width: 4em;
+	height: 4em;
 	background-color: #f4f4f4;
 	-moz-border-radius: 0.25em;
 	-webkit-border-radius: 0.25em;
