@@ -8,7 +8,8 @@ class CardForm(forms.ModelForm):
                 'class':'card_mask',
                 'id': 'defaultKeypad',
                 'placeholder':'**** **** **** ****',
-                'maxlength':16}))
+                'maxlength':16,
+                'style':'width:250px; font-size:20px;'}))
     class Meta:
         model = Card
         fields = ['number']

@@ -8,10 +8,10 @@
 <div>
 	<form style="text-align: center;">
         <!--{% csrf_token %}-->
-        <input type="text" id="defaultKeypad" name="amount" placeholder="100 $">
+        <input style="width:250px;" type="text" id="defaultKeypad" name="amount" placeholder="100 $">
         <!--<input type="reset" value="clear"/>-->
-        <input type="submit" value="take"/>
-        <input type="submit" value="exit"/>
+        <input class="keypad-special keypad-close" type="submit" value="take"/>
+        <input class="keypad-special keypad-close" type="submit" value="exit"/>
     </form>
 </div>
 {% endblock content %}

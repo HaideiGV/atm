@@ -10,8 +10,8 @@
         <p>Date - {{ now }}</p>
         <form action="" method="get">
             {% csrf_token %}
-            <input onclick="location.href='/cash/operations/'" type="button" name="prev" value="Prev" />
-            <input onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
+            <input class="keypad-special keypad-close" onclick="location.href='/cash/operations/'" type="button" name="prev" value="Prev" />
+            <input class="keypad-special keypad-close" onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
         </form>
     </div>
 {% endblock content %}

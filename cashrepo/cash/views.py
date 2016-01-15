@@ -1,20 +1,8 @@
-from django.shortcuts import render, render_to_response, HttpResponseRedirect, HttpResponse, redirect
+from django.shortcuts import render, render_to_response, HttpResponseRedirect
 import datetime
 from models import *
 from forms import CardForm, PinForm
-from django import template
 
-
-register = template.Library()
-@register.filter(name='input_filter')
-def input_filter(value):
-    res = ''
-    for i in range(len(str(value))-1):
-        if i%3 == 0:
-           res = res + '-'
-        else:
-            res = res + str(value)[i]
-    return res
 
 
 codes = {
@@ -198,7 +186,6 @@ def report_page(request):
 
 def error_page(request):
     btn = request.GET.get("prev")
-    print(btn)
     if btn == 'prev':
         return HttpResponseRedirect('/cash/operations/')
     return render(request, "error.html")

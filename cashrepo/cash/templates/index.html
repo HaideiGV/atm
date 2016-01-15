@@ -12,7 +12,7 @@
         }
     </style>
     <link href="/static/css/jquery.keypad.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/jquery.payfield.css">
+    <!--<link rel="stylesheet" href="/static/css/jquery.payfield.css">-->
     <link rel="stylesheet" href="/static/css/jqx.base.css" type="text/css" />
     <style>
         #inlineKeypad { width: 10em; }
@@ -24,7 +24,7 @@
     <script src="/static/js/jquery.plugin.js"></script>
     <script src="/static/js/jquery.keypad.js"></script>
 
-    <script>
+    <script type="text/javascript">
     $(function () {
 	    $('#defaultKeypad').keypad();
 	});
@@ -32,7 +32,7 @@
 
     <script type="text/javascript">
         $(function () {
-            $(".card_mask").jqxMaskedInput({mask: '####-####-####-####' });
+            $("#defaultKeypad").jqxMaskedInput({mask: '#### #### #### ####' });
         });
     </script>
 </head>

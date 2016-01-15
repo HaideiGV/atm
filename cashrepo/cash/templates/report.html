@@ -11,8 +11,8 @@
         <p>Date - {{ trans_time }}</p>
         <form>
             {% csrf_token %}
-            <input type="button" onclick="location.href='/cash/operations/'" value="Prev"/>
-            <input type="button" onclick="location.href='/cash/'" value="Exit"/>
+            <input class="keypad-special keypad-close" type="button" onclick="location.href='/cash/operations/'" value="Prev"/>
+            <input class="keypad-special keypad-close" type="button" onclick="location.href='/cash/'" value="Exit"/>
         </form>
     </div>
 {% endblock content %}

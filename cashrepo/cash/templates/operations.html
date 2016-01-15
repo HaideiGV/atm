@@ -6,8 +6,8 @@
 {% block content %}
     <h1>Choose your operation</h1>
     <form action="." method="get">
-        <input onclick="location.href='/cash/balance/'" type="button" name="balance" value="Balance"/>
-        <input onclick="location.href='/cash/withdraw_cash'" type="button" name="withdraw_cash" value="Withdraw Cash"/>
-        <input onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
+        <input class="keypad-special keypad-close" onclick="location.href='/cash/balance/'" type="button" name="balance" value="Balance"/>
+        <input class="keypad-special keypad-close" onclick="location.href='/cash/withdraw_cash'" type="button" name="withdraw_cash" value="Take"/>
+        <input class="keypad-special keypad-close" onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
     </form>
 {% endblock content %}
