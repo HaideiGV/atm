@@ -41,9 +41,6 @@ render:function(){
     e.host.addClass(e.toThemeProperty("jqx-widget-content"));
     maskEditor=this;
 
-
-
-
     if(e.element.nodeName.toLowerCase()=="div"){
         e.element.innerHTML="";
         e.maskbox=a("<input " +
