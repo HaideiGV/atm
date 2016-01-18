@@ -98,13 +98,6 @@ def pin_code_page(request):
 
 
 def operations_page(request):
-    # if request.GET.get('exit'):
-    #     return HttpResponseRedirect('/cash/')
-    # elif request.GET.get('withdraw_cash'):
-    #     return HttpResponseRedirect('/cash/take_cash/')
-    # elif request.GET.get('balance'):
-    #     return HttpResponseRedirect('/cash/balance/')
-    # else:
     return render(request, "operations.html")
 
 
