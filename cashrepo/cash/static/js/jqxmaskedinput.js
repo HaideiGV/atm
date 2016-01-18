@@ -13,14 +13,14 @@ a.extend(a.jqx._jqxMaskedInput.prototype,{
         mask:"99999",
         width:null,
         height:25,
-        textAlign:"left",
+        textAlign:"center",
         readOnly:false,
         cookies:false,
-        promptChar:" ",
+        promptChar:"_",
         inputMode:"advanced",
         rtl:false,
         disabled:false,
-        events:["mousedown","mouseup","keydown","keyup","keypress"],
+        events:["valueChanged","textchanged","mousedown","mouseup","keydown","keyup","keypress","change"],
         aria:{"aria-valuenow":{name:"value",type:"string"},"aria-disabled":{name:"disabled",type:"boolean"}}};
 
 
@@ -41,9 +41,17 @@ render:function(){
     e.host.addClass(e.toThemeProperty("jqx-widget-content"));
     maskEditor=this;
 
+
+
+
     if(e.element.nodeName.toLowerCase()=="div"){
         e.element.innerHTML="";
-        e.maskbox=a("<input autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false' type='textarea'/>").appendTo(e.host)
+        e.maskbox=a("<input " +
+            "autocomplete='off' " +
+            "autocorrect='off' " +
+            "autocapitalize='off' " +
+            "spellcheck='false' " +
+            "type='textarea'/>").appendTo(e.host)
     }else{
         e.maskbox=e.host;
         e.maskbox.attr("autocomplete","off");
@@ -53,12 +61,16 @@ render:function(){
         e.maskbox.addClass(e.toThemeProperty("jqx-input-content"));
         e.maskbox.addClass(e.toThemeProperty("jqx-widget-content"));
         var b=e.host.attr("name");
-        if(b){e.maskbox.attr("name",b)}if(e.rtl){e.maskbox.addClass(e.toThemeProperty("jqx-rtl"))}
+        if(b){
+            e.maskbox.attr("name",b)}
 
+    if(e.rtl){e.maskbox.addClass(e.toThemeProperty("jqx-rtl"))}
         var d=this;
         e.propertyChangeMap.disabled=function(g,j,h,k){
-            if(k){g.maskbox.addClass(d.toThemeProperty("jqx-input-disabled"))}
-            else{g.maskbox.removeClass(d.toThemeProperty("jqx-input-disabled"))}};
+            if(k){
+                g.maskbox.addClass(d.toThemeProperty("jqx-input-disabled"))}
+            else{
+                g.maskbox.removeClass(d.toThemeProperty("jqx-input-disabled"))}};
 
             if(e.disabled){e.maskbox.addClass(
                 e.toThemeProperty("jqx-input-disabled"));
@@ -70,24 +82,78 @@ render:function(){
                 e._initializeLiterals();
                 e._render();
 
-                if(e.value!=null){e.inputValue(e.value.toString())}var d=this;if(e.host.parents("form").length>0){e.host.parents("form").on("reset",function(){setTimeout(function(){d.clearValue()},10)})}e.addHandlers();if(e.cookies){var c=a.jqx.cookie.cookie("maskedInput."+e.element.id);if(c){e.val(c)}}},addHandlers:function(){var d=this;if(a.jqx.mobile.isTouchDevice()){}var b="";var c=function(j,f){var h=String.fromCharCode(f);var k=parseInt(h);var g=true;if(!isNaN(k)){g=true;var e=this.maskbox.val().toString().length;if(e>=this.items.length&&this._selection().length==0){g=false}}if(!j.ctrlKey&&!j.shiftKey&&!j.metaKey){
-                if(f>=65&&f<=90){g=false}}return g};
+                if(e.value!=null){
+                    e.inputValue(e.value.toString())}
+    var d=this;
+    if(e.host.parents("form").length>0){
+        e.host.parents("form").on("reset",function(){setTimeout(function(){d.clearValue()},10)})}
+    e.addHandlers();
+    if(e.cookies){
+        var c=a.jqx.cookie.cookie("maskedInput."+e.element.id);
+        if(c){e.val(c)}}},
+    addHandlers:function(){
+        var d=this;
+        if(
+            a.jqx.mobile.isTouchDevice()){}
+        var b="";
+        var c=function(j,f){
+            var h=String.fromCharCode(f);
+            var k=parseInt(h);
+            var g=true;
+            if(!isNaN(k)){
+                g=true;
+                var e=this.maskbox.val().toString().length;
+                if(e>=this.items.length&&this._selection().length==0){
+                    g=false}}
+            if(!j.ctrlKey&&!j.shiftKey&&!j.metaKey){
+                if(f>=65&&f<=90){
+                    g=false}}
+            return g};
 
-                this.addHandler(this.maskbox,"blur",function(e){if(d.inputMode=="simple"){d._exitSimpleInputMode(e,d,false,b);
+        this.addHandler(
+            this.maskbox,
+            "blur",
+            function(e){
+                if(d.inputMode=="simple"){
+                    d._exitSimpleInputMode(e,d,false,b);
+                return false}
+                if(d.rtl){
+                    d.maskbox.css("direction","ltr")}
+                    d.host.removeClass(d.toThemeProperty("jqx-fill-state-focus"));
+                if(d.maskbox.val()!=b){
+                    d._raiseEvent(7,e);
+                    if(d.cookies){
+                        a.jqx.cookie.cookie("maskedInput."+d.element.id,d.maskbox.val())}}}
+        );
 
-                return false}if(d.rtl){d.maskbox.css("direction","ltr")}d.host.removeClass(d.toThemeProperty("jqx-fill-state-focus"));
 
-                if(d.maskbox.val()!=b){d._raiseEvent(7,e);if(d.cookies){a.jqx.cookie.cookie("maskedInput."+d.element.id,d.maskbox.val())}}});
+
+//  Fix problem ----------------------------------------------------------
+
+
+        this.addHandler(
+            this.maskbox,
+            "focus",
+            function(e){
+                b=d.maskbox.val();
+                if(d.inputMode=="simple"){
+                    d.maskbox[0].value=d._getEditValue();
+                    a.data(d.maskbox,"simpleInputMode",true);
+                    return false}
+                if(d.rtl){
+                    d.maskbox.css("direction","rtl")}d.host.addClass(d.toThemeProperty("jqx-fill-state-focus"))});
 
                 this.addHandler(
-                    this.maskbox,"focus",function(e){b=d.maskbox.val();
-
-                    if(d.inputMode=="simple"){
-                        d.maskbox[0].value=d._getEditValue();
-                        a.data(d.maskbox,"simpleInputMode",true);
-                    return false}if(d.rtl){d.maskbox.css("direction","rtl")}d.host.addClass(d.toThemeProperty("jqx-fill-state-focus"))});
-
-                this.addHandler(this.host,"keydown",function(g){var h=d.readOnly;var f=g.charCode?g.charCode:g.keyCode?g.keyCode:0;if(h||d.disabled){return false}if(d.inputMode!="simple"){var e=d._handleKeyDown(g,f);if(!e){if(g.preventDefault){g.preventDefault()}if(g.stopPropagation){g.stopPropagation()}}return e}else{return c.call(d,g,f)}});this.addHandler(this.host,"keyup",function(f){var g=d.readOnly;var e=f.charCode?f.charCode:f.keyCode?f.keyCode:0;if(g||d.disabled){return true}if(d.inputMode=="simple"){return c.call(d,f,e)}else{if(f.preventDefault){f.preventDefault()}if(f.stopPropagation){f.stopPropagation()}return false}});this.addHandler(this.host,"keypress",function(g){var h=d.readOnly;var f=g.charCode?g.charCode:g.keyCode?g.keyCode:0;if(h||d.disabled){return true}if(d.inputMode=="simple"){return c.call(d,g,f)}else{var e=d._handleKeyPress(g,f);if(!e){if(g.preventDefault){g.preventDefault()}if(g.stopPropagation){g.stopPropagation()}}return e}})},focus:function(){try{this.maskbox.focus()}catch(b){}},_exitSimpleInputMode:function(b,n,h,d){if(n==undefined){n=b.data}if(n==null){return}if(h==undefined){if(b.target!=null&&n.element!=null){if((b.target.id!=undefined&&b.target.id.toString().length>0&&n.host.find("#"+b.target.id).length>0)||b.target==n.element){return}}var f=n.host.offset();var e=f.left;var g=f.top;var c=n.host.width();var l=n.host.height();var o=a(b.target).offset();if(o.left>=e&&o.left<=e+c){if(o.top>=g&&o.top<=g+l){return}}}if(n.disabled||n.readOnly){return}var k=a.data(n.maskbox,"simpleInputMode");if(k==null){return}var j=n.maskbox[0].value;n.val(j);a.data(n.maskbox,"simpleInputMode",null);return false},_getString:function(){var c="";for(var b=0;b<this.items.length;b++){var d=this.items[b].character;if((this.items[b].character==this.promptChar)&&(this.promptChar!=this.items[b].defaultCharacter)){c+=this.items[b].defaultCharacter}else{c+=d}}return c},_initializeLiterals:function(){if(this.mask==undefined||this.mask==null){this.items=new Array();return}this.mask=this.mask.toString();
+                    this.host,
+                    "keydown",
+                    function(g){
+                        var h=d.readOnly;
+                        var f=g.charCode?g.charCode:g.keyCode?g.keyCode:0;
+                        if(h||d.disabled){
+                            return false}
+                        if(d.inputMode!="simple"){
+                            var e=d._handleKeyDown(g,f);
+                            if(!e){if(g.preventDefault){g.preventDefault()}if(g.stopPropagation){g.stopPropagation()}}return e}else{return c.call(d,g,f)}});this.addHandler(this.host,"keyup",function(f){var g=d.readOnly;var e=f.charCode?f.charCode:f.keyCode?f.keyCode:0;if(g||d.disabled){return true}if(d.inputMode=="simple"){return c.call(d,f,e)}else{if(f.preventDefault){f.preventDefault()}if(f.stopPropagation){f.stopPropagation()}return false}});this.addHandler(this.host,"keypress",function(g){var h=d.readOnly;var f=g.charCode?g.charCode:g.keyCode?g.keyCode:0;if(h||d.disabled){return true}if(d.inputMode=="simple"){return c.call(d,g,f)}else{var e=d._handleKeyPress(g,f);if(!e){if(g.preventDefault){g.preventDefault()}if(g.stopPropagation){g.stopPropagation()}}return e}})},focus:function(){try{this.maskbox.focus()}catch(b){}},_exitSimpleInputMode:function(b,n,h,d){if(n==undefined){n=b.data}if(n==null){return}if(h==undefined){if(b.target!=null&&n.element!=null){if((b.target.id!=undefined&&b.target.id.toString().length>0&&n.host.find("#"+b.target.id).length>0)||b.target==n.element){return}}var f=n.host.offset();var e=f.left;var g=f.top;var c=n.host.width();var l=n.host.height();var o=a(b.target).offset();if(o.left>=e&&o.left<=e+c){if(o.top>=g&&o.top<=g+l){return}}}if(n.disabled||n.readOnly){return}var k=a.data(n.maskbox,"simpleInputMode");if(k==null){return}var j=n.maskbox[0].value;n.val(j);a.data(n.maskbox,"simpleInputMode",null);return false},_getString:function(){var c="";for(var b=0;b<this.items.length;b++){var d=this.items[b].character;if((this.items[b].character==this.promptChar)&&(this.promptChar!=this.items[b].defaultCharacter)){c+=this.items[b].defaultCharacter}else{c+=d}}return c},_initializeLiterals:function(){if(this.mask==undefined||this.mask==null){this.items=new Array();return}this.mask=this.mask.toString();
 
                 var c=this.mask.length;
                 for(var f=0;f<c;f++){

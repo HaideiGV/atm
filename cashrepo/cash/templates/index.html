@@ -26,15 +26,21 @@
 
     <script type="text/javascript">
     $(function () {
-	    $('#defaultKeypad').keypad();
+
+        $('#defaultKeypad').keypad();
+        $('.jqx-input-content').jqxMaskedInput({mask: '#### #### #### ####' });
+        //card_mask is-keypad jqx-input jqx-rc-all jqx-widget jqx-widget-content jqx-reset jqx-input-content
 	});
     </script>
 
-    <script type="text/javascript">
-        $(function () {
-            $("#defaultKeypad").jqxMaskedInput({mask: '#### #### #### ####' });
-        });
-    </script>
+    <!--<script type="text/javascript">-->
+        <!--$(function () {-->
+            <!--$("#jqxmaskedinput").jqxMaskedInput({mask: '#### #### #### ####' });-->
+        <!--});-->
+    <!--</script>-->
+
+
+
 </head>
 
 <body>

@@ -12,8 +12,11 @@
 
     <h1 style="text-align: center;">Card Number</h1>
     <form style="text-align: center;" method="get" action=".">
-        {{ form.number}}
-        <input class="keypad-special keypad-close" type="submit" value="Ok"/>
+        <div id="jqxmaskedinput">
+            {{ form.number}}
+
+        <button class="keypad-special keypad-close" type="submit">Ok</button>
+        </div>
     </form>
 
 {% endblock content%}

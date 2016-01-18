@@ -5,11 +5,11 @@ class CardForm(forms.ModelForm):
     number = forms.CharField(
             label=('number'),
             widget=forms.TextInput(attrs={
-                'class':'card_mask',
+                #'class':'jqxmaskedinput',
                 'id': 'defaultKeypad',
                 'placeholder':'**** **** **** ****',
                 'maxlength':16,
-                'style':'width:250px; font-size:20px;'}))
+                'style':'width:250px; height:40px; font-size:20px;'}))
     class Meta:
         model = Card
         fields = ['number']

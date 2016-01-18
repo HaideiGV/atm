@@ -9,7 +9,7 @@
     <form style="text-align: center;" action="." method="get">
         {% csrf_token %}
         <!--{{ form.as_p}}-->
-        <input style="width:250px;" type="text" id="defaultKeypad" name="pin" placeholder="****" maxlength="4">
+        <input style="width:250px; height:40px; font-size:20px;" type="text" id="defaultKeypad" name="pin" placeholder="****" maxlength="4">
         <!--<input type="reset" value="Clear"/>-->
         <input class="keypad-special keypad-close" type="submit" value="Ok"/>
         <input class="keypad-special keypad-close" onclick="location.href='/cash/'" type="button" value="Exit"/>
