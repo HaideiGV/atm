@@ -5,14 +5,14 @@
 
 {% block content %}
         <div>
-        <p>Card Number - {{ card }}</p>
-        <p>Withdraw sum - {{ withdraw_cash }}</p>
-        <p>Balance - {{ amount }}</p>
-        <p>Date - {{ trans_time }}</p>
+        <h3><p>Card Number - {{ card }}</p></h3>
+        <h3><p>Withdraw sum - {{ withdraw_cash }}</p></h3>
+        <h3><p>Balance - {{ amount }}</p></h3>
+        <h3><p>Date - {{ trans_time }}</p></h3>
         <form>
             {% csrf_token %}
-            <input class="keypad-special keypad-close" type="button" onclick="location.href='/cash/operations/'" value="Prev"/>
-            <input class="keypad-special keypad-close" type="button" onclick="location.href='/cash/'" value="Exit"/>
+            <input class="btn btn-lg btn-success" type="button" onclick="location.href='/cash/operations/'" value="Prev"/>
+            <input class="btn btn-lg btn-danger" type="button" onclick="location.href='/cash/'" value="Exit"/>
         </form>
     </div>
 {% endblock content %}

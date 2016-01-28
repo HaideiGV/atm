@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^withdraw_cash/$', views.withdraw_cash_page),
     url(r'^report/$', views.report_page),
     url(r'^error/$', views.error_page),
+    url(r'^about/$', views.about),
+    url(r'^contacts/$', views.contacts),
 
 ]

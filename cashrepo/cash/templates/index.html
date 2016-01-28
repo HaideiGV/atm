@@ -6,20 +6,34 @@
     {% block script %}{% endblock script%}
     <style>
         body{
-            background-image: url("/static/media/background.jpg");
+            /*background-image: url("/static/media/background.jpg");*/
             padding-top: 10%;
             text-align: center;
+            background: linear-gradient(to left, #8FDB75, #435298);
         }
     </style>
     <link href="/static/css/jquery.keypad.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/jqx.base.css" type="text/css" />
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+      crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+      integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+      crossorigin="anonymous">
     <style>
         #inlineKeypad { width: 10em; }
     </style>
     <script type="text/javascript" src="/static/js/scripts/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/static/js/jqxcore.js"></script>
     <script type="text/javascript" src="/static/js/jqxmaskedinput.js"></script>
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
     <script src="/static/js/jquery.plugin.js"></script>
     <script src="/static/js/jquery.keypad.js"></script>
 
@@ -41,7 +55,47 @@
 
 <body>
 
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar1" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/cash/">Home</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+
 {% block content %}{% endblock content %}
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar2" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/cash/about/">About</a></li>
+            <li><a href="/cash/contacts/">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
 </body>
 </html>

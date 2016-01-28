@@ -5,13 +5,13 @@
 
 {% block content %}
     <div>
-        <p>Card Number - {{ card }}</p>
-        <p>Balance - {{ amount }}</p>
-        <p>Date - {{ now }}</p>
+        <h3><p>Card Number - {{ card }}</p></h3>
+        <h3><p>Balance - {{ amount }}</p></h3>
+        <h3><p>Date - {{ now }}</p></h3>
         <form action="" method="get">
             {% csrf_token %}
-            <input class="keypad-special keypad-close" onclick="location.href='/cash/operations/'" type="button" name="prev" value="Prev" />
-            <input class="keypad-special keypad-close" onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
+            <input class="btn btn-lg btn-success" onclick="location.href='/cash/operations/'" type="button" name="prev" value="Prev" />
+            <input class="btn btn-lg btn-danger" onclick="location.href='/cash/'" type="button" name="exit" value="Exit"/>
         </form>
     </div>
 {% endblock content %}

@@ -182,3 +182,11 @@ def error_page(request):
     if btn == 'prev':
         return HttpResponseRedirect('/cash/operations/')
     return render(request, "error.html")
+
+
+def about(request):
+    return render(request, "about.html")
+
+
+def contacts(request):
+    return render(request, "contacts.html")
