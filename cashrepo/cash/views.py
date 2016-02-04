@@ -98,6 +98,12 @@ def pin_code_page(request):
 
 
 def operations_page(request):
+    if "balance" in request.GET and request.GET["balance"] != None:
+        return HttpResponseRedirect('/cash/balance/')
+    elif "withdraw_cash" in request.GET and request.GET["withdraw_cash"] != None:
+        return HttpResponseRedirect('/cash/withdraw_cash/')
+    elif "exit" in request.GET and request.GET["exit"] != None:
+        return HttpResponseRedirect('/cash/')
     return render(request, "operations.html")
 
 
@@ -121,6 +127,10 @@ def balance_page(request):
         'now':now,
         'amount':amount
     }
+    if "prev" in request.GET and request.GET["prev"] != None:
+        return HttpResponseRedirect('/cash/operations/')
+    elif "exit" in request.GET and request.GET["exit"] != None:
+        return HttpResponseRedirect('/cash/')
     return render_to_response("balance_page.html", ctx)
 
 
@@ -173,6 +183,10 @@ def report_page(request):
         'withdraw_cash': request.session['withdraw_cash'],
         'amount': Card.objects.values('amount').filter(number=request.session['number'])[0]['amount']
     }
+    if "prev" in request.GET and request.GET["prev"] != None:
+        return HttpResponseRedirect('/cash/operations/')
+    elif "exit" in request.GET and request.GET["exit"] != None:
+        return HttpResponseRedirect('/cash/')
     return render_to_response("report.html", ctx)
 
 

@@ -31,4 +31,4 @@ class Transactions(models.Model):
     transaction_code = models.IntegerField()
 
     def __unicode__(self):
-        return str(self.card_number)+str(self.date)+str(self.transaction_status)+str(self.paymant)
+        return str(self.card_number)+str(self.transaction_time)+str(self.transaction_status)+str(self.show_balance)

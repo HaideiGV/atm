@@ -7,11 +7,10 @@
 
 <div>
 	<form style="text-align: center;">
-        <!--{% csrf_token %}-->
         <input style="width:250px; height:40px; font-size:20px;" type="text" id="defaultKeypad" name="amount" placeholder="100 $">
         <!--<input type="reset" value="clear"/>-->
-        <input class="btn btn-lg btn-success" type="submit" value="take"/>
-        <input class="btn btn-lg btn-danger" type="submit" value="exit"/>
+        <button class="btn btn-lg btn-success">Take</button>
+        <button class="btn btn-lg btn-danger">Exit</button>
     </form>
 </div>
 {% endblock content %}
