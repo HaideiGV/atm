@@ -7,10 +7,7 @@
 <body>
     <h1 style="text-align: center;">Pin Code</h1>
     <form style="text-align: center;" action="." method="get">
-        {% csrf_token %}
-        <!--{{ form.as_p}}-->
         <input style="width:250px; height:40px; font-size:20px;" type="text" id="defaultKeypad" name="pin" placeholder="****" maxlength="4">
-        <!--<input type="reset" value="Clear"/>-->
         <button class="btn btn-lg btn-success">Ok</button>
         <button class="btn btn-lg btn-danger">Exit</button>
     </form>

@@ -20,28 +20,28 @@
 
 
     <link href="/static/css/jquery.keypad.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="/static/css/jqx.base.css" type="text/css" />-->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
 
 
 
-    <script type="text/javascript" src="/static/js/scripts/jquery-1.11.1.min.js"></script>
-    <!--<script type="text/javascript" src="/static/js/jqxcore.js"></script>-->
-    <!--<script type="text/javascript" src="/static/js/jqxmaskedinput.js"></script>-->
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.plugin.js"></script>
     <script type="text/javascript" src="/static/js/jquery.keypad.js"></script>
     <script type="text/javascript">
     $(function () {
         $('#defaultKeypad').keypad();
+        $('.keypad-key').mousedown(function(){
+            if ($('#defaultKeypad').length % 4 === 0){
+                $('#defaultKeypad').val()  = $('#defaultKeypad').val().toString() + " ";
+            }
+            else if($('#defaultKeypad').length === 16){
+                $('#defaultKeypad').val()  = $('#defaultKeypad').val().toString();
+            };
+        });
 	});
     </script>
-    <!--<script type="text/javascript">-->
-        <!--$(function () {-->
-            <!--$("#jqxmaskedinput").jqxMaskedInput({mask: '#### #### #### ####' });-->
-        <!--});-->
-    <!--</script>-->
 
 </head>
 

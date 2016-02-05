@@ -9,8 +9,7 @@
         <h3><p>Withdraw sum - {{ withdraw_cash }}</p></h3>
         <h3><p>Balance - {{ amount }}</p></h3>
         <h3><p>Date - {{ trans_time }}</p></h3>
-        <form>
-            {% csrf_token %}
+        <form action="." method="get">
             <button class="btn btn-lg btn-success" name="prev">Prev</button>
             <button class="btn btn-lg btn-danger" name="exit">Exit</button>
         </form>
