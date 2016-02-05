@@ -138,7 +138,7 @@ def balance_page(request):
 def withdraw_cash_page(request):
     start_amount = Card.objects.values('amount').filter(number=request.session['number'])[0]['amount']
     amount = request.GET.get('amount')
-    if amount != None:
+    if amount != None and amount != '':
         if float(amount) <= float(start_amount):
             c = Card.objects.get(number=request.session['number'])
             c.amount = float(start_amount) - float(amount)
