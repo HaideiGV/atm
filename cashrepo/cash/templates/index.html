@@ -31,14 +31,11 @@
     <script type="text/javascript" src="/static/js/jquery.keypad.js"></script>
     <script type="text/javascript">
     $(function () {
-        $('#defaultKeypad').keypad();
+        $('input').keypad();
+        var cnt = 0;
         $('.keypad-key').mousedown(function(){
-            if ($('#defaultKeypad').length % 4 === 0){
-                $('#defaultKeypad').val()  = $('#defaultKeypad').val().toString() + " ";
-            }
-            else if($('#defaultKeypad').length === 16){
-                $('#defaultKeypad').val()  = $('#defaultKeypad').val().toString();
-            };
+            $(this).after("<p style='color:green;'>cnt</p>");
+            cnt = cnt + 1;
         });
 	});
     </script>
