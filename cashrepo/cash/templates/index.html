@@ -29,15 +29,15 @@
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.plugin.js"></script>
     <script type="text/javascript" src="/static/js/jquery.keypad.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.maskedinput.min.js"></script>
     <script type="text/javascript">
     $(function () {
-        $('input').keypad();
-        var cnt = 0;
-        $('.keypad-key').mousedown(function(){
-            $(this).after("<p style='color:green;'>cnt</p>");
-            cnt = cnt + 1;
-        });
+        $('#defaultKeypad').keypad();
 	});
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function($){
+        $("#defaultKeypad").mask("9999 9999 9999 9999");
     </script>
 
 </head>

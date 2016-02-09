@@ -19,7 +19,8 @@ codes = {
 def card_number_page(request):
     form = CardForm(request.GET)
     card = request.GET.get("number")
-    request.session["number"] = card
+    request.session["number"] = str(card).replace('-','')
+    # card = request.session["number"]
     request.session["try_pin"] = 0
     cards = Card.objects.filter(number=card, status=1)
     card_blocked = Card.objects.filter(number=card, status=0)

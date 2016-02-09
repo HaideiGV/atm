@@ -5,7 +5,7 @@ class CardForm(forms.ModelForm):
     number = forms.CharField(
             label=('number'),
             widget=forms.TextInput(attrs={
-                #'class':'jqxmaskedinput',
+                # 'class':'jqxmaskedinput',
                 'id': 'defaultKeypad',
                 'placeholder':'**** **** **** ****',
                 'maxlength':16,
