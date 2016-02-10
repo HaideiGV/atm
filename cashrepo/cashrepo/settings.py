@@ -28,6 +28,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+INTERNAL_IPS = ['127.0.0.1',  '::1']
 
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cash',
+    'debug_toolbar',
 )
 
 # INSTALLED_APPS += ("djcelery", )
@@ -51,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'cashrepo.urls'
@@ -91,6 +94,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 
 # Static files (CSS, JavaScript, Images)
